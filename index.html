@@ -110,9 +110,13 @@
                 if (!currentText.trim() && !currentMemo.trim()) {
                     delete newAllData[currentDate];
                 } else {
-                    // 하나라도 있으면 저장
+                    // ⭐ 중요: 기존 title과 summary 보존!
+                    const existingData = allData[currentDate] || {};
+                    
                     newAllData[currentDate] = {
+                        title: existingData.title || '',        // 기존 title 보존
                         text: currentText,
+                        summary: existingData.summary || '',    // 기존 summary 보존
                         memo: currentMemo,
                         dayOfWeek: getDayOfWeek(currentDate),
                         weekNumber: getWeekNumber(currentDate)
